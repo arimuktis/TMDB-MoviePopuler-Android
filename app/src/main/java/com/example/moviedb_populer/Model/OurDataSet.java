@@ -1,4 +1,4 @@
-package com.example.moviedb_populer.Resource;
+package com.example.moviedb_populer.Model;
 
 public class OurDataSet {
 

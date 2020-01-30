@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -20,7 +20,7 @@ android {
         }
         buildTypes.each {
             it.buildConfigField 'String', 'API_KEY', '"8897c211c4af54fb09ad89b42353a210"'
-            it.buildConfigField 'String', 'URL_POSTER', '"http://image.tmdb.org/t/p/w185"'
+            it.buildConfigField 'String', 'URL_POSTER', '"https://image.tmdb.org/t/p/w1280"'
         }
 
     }
@@ -65,4 +65,6 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp-urlconnection:$OKHTTP_VERSION"
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
 }

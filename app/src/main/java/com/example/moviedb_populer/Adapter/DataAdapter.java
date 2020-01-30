@@ -1,7 +1,6 @@
 package com.example.moviedb_populer.Adapter;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviedb_populer.R;
-import com.example.moviedb_populer.Resource.OurDataSet;
+import com.example.moviedb_populer.Model.OurDataSet;
 import com.example.moviedb_populer.view.DataViewHolder;
 
 import java.util.List;
@@ -37,8 +36,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
     public void onBindViewHolder(@NonNull DataViewHolder dataViewHolder, int i) {
         OurDataSet currentData = list.get(i);
 
-        dataViewHolder.name.setText(currentData.getName());
-        dataViewHolder.hobby.setText(currentData.getHobby());
+        dataViewHolder.title.setText(currentData.getName());
+        dataViewHolder.date.setText(currentData.getHobby());
 
     }
 

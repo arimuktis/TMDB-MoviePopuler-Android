@@ -1,6 +1,6 @@
 package com.example.moviedb_populer.Interface;
 
-import com.example.moviedb_populer.Resource.OurDataSet;
+import com.example.moviedb_populer.Model.OurDataSet;
 
 import java.util.List;
 

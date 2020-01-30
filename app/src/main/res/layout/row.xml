@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/_20sdp"
+    android:layout_marginRight="@dimen/_20sdp"
+    android:layout_marginBottom="@dimen/_15sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardElevation="@dimen/_3sdp">
@@ -12,79 +16,111 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@drawable/bg_ic_gradient"
-                android:id="@+id/gambar"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="@dimen/_25sdp"
-                android:layout_gravity="center"/>
-
-            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="@dimen/_250sdp"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/gambar"
+                android:scaleType="centerCrop"/>
+
+            <FrameLayout
+                android:id="@+id/popularityContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:minWidth="@dimen/_25sdp"
+                android:background="@drawable/layout_rounded_corner">
+
                 <TextView
-                    android:layout_width="match_parent"
+                    android:id="@+id/popularityTextView"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:drawableLeft="@drawable/ic_stars_white"
+                    android:layout_width="wrap_content"
+                    android:drawablePadding="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
                     android:layout_height="wrap_content"
-                    android:text="name"
+                    android:layout_gravity="center"
                     android:textStyle="bold"
-                    android:textSize="@dimen/_24ssp"
-                    android:layout_marginBottom="@dimen/_8sdp"
-                    android:id="@+id/name"
-                    android:layout_marginLeft="@dimen/_25sdp"
-                    android:layout_marginRight="@dimen/_25sdp"/>
+                    android:textColor="@android:color/white"
+                    tools:text="1"/>
+            </FrameLayout>
 
-
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginLeft="@dimen/_25sdp"
-                    android:layout_marginRight="@dimen/_25sdp"
-                    android:background="@color/colorPrimary"/>
+            <FrameLayout
+                android:layout_alignBottom="@id/gambar"
+                android:background="@color/translucent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
+                    android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/name"
-                        android:text="hobby:"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_12ssp"
-                        android:id="@+id/titlehobby"
+                        android:text="name"
+                        android:textColor="#ffffff"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_24ssp"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:layout_marginLeft="@dimen/_25sdp"
-                        android:layout_marginRight="@dimen/_5sdp"/>
+                        android:id="@+id/movieTitle"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"/>
 
-                    <TextView
+
+
+                    <View
                         android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:background="#ffffff"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/name"
-                        android:text="hobby"
-                        android:textSize="@dimen/_18ssp"
-                        android:id="@+id/hobby"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:layout_marginRight="@dimen/_25sdp"/>
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/movieTitle"
+                            android:text="Tanggal:"
+                            android:textColor="#ffffff"
+                            android:textSize="@dimen/_12ssp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:layout_marginRight="@dimen/_5sdp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/movieTitle"
+                            android:textColor="@color/colorPrimary"
+                            android:text="Date"
+                            android:textSize="@dimen/_15ssp"
+                            android:id="@+id/date"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:layout_marginRight="@dimen/_15sdp"/>
+
+                    </LinearLayout>
+
+
+
 
                 </LinearLayout>
+            </FrameLayout>
 
 
 
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 

@@ -11,15 +11,15 @@ import com.example.moviedb_populer.R;
 
 public class DataViewHolder  extends RecyclerView.ViewHolder {
 
-    public TextView name;
-    public TextView hobby;
+    public TextView title;
+    public TextView date;
     public ImageView gambar;
 
     public DataViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        name = itemView.findViewById(R.id.name);
-        hobby = itemView.findViewById(R.id.hobby);
+        title = itemView.findViewById(R.id.movieTitle);
+        date = itemView.findViewById(R.id.date);
         gambar = itemView.findViewById(R.id.gambar);
     }
 }
