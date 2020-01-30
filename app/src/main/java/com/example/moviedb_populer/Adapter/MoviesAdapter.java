@@ -6,12 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.example.moviedb_populer.Activity.MainActivity;
 import com.example.moviedb_populer.Model.MovieModel;
 import com.example.moviedb_populer.R;
 import com.example.moviedb_populer.R2;
@@ -25,6 +30,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.example.moviedb_populer.BuildConfig.URL_BACKBG;
 import static com.example.moviedb_populer.BuildConfig.URL_POSTER;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
@@ -34,13 +40,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     private Context context;
 
 
+
+
     public static class MovieViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.movieTitle) TextView movieTitle;
         @BindView(R.id.date) TextView date;
         @BindView(R.id.popularityTextView) TextView popularity;
         @BindView(R.id.gambar) ImageView backbg;
-
         public MovieViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
@@ -78,12 +85,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         }
 
         holder.popularity.setText(movies.get(position).getVoteAverage().toString());
-        Glide.with(context).load(URL_POSTER + movies.get(position).getBackdropPath()).into(holder.backbg);
+        Glide.with(context).load(URL_BACKBG + movies.get(position).getBackdropPath())
+                .into(holder.backbg);
 
-        String abc = URL_POSTER + movies.get(0).getBackdropPath();
-        if (abc != null) {
-            Log.i("TAG","#Glide"+abc);
-        }
     }
 
     @Override

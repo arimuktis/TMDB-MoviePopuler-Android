@@ -22,6 +22,10 @@
 
         </activity>
 
+        <activity android:name=".Activity.DetailActivity"
+            android:label="Detail Movie">
+
+        </activity>
         <activity android:name=".Activity.SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

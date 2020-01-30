@@ -20,6 +20,7 @@ android {
         }
         buildTypes.each {
             it.buildConfigField 'String', 'API_KEY', '"8897c211c4af54fb09ad89b42353a210"'
+            it.buildConfigField 'String', 'URL_BACKBG', '"https://image.tmdb.org/t/p/w1280"'
             it.buildConfigField 'String', 'URL_POSTER', '"https://image.tmdb.org/t/p/w1280"'
         }
 
