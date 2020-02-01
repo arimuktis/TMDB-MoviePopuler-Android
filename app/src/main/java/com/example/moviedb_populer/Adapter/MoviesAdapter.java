@@ -20,7 +20,6 @@ import com.example.moviedb_populer.Activity.MainActivity;
 import com.example.moviedb_populer.Model.MovieModel;
 import com.example.moviedb_populer.R;
 import com.example.moviedb_populer.R2;
-import com.example.moviedb_populer.view.DataViewHolder;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

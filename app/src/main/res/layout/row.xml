@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/_120sdp"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/_5sdp"
-    android:layout_marginLeft="@dimen/_20sdp"
-    android:layout_marginRight="@dimen/_20sdp"
-    android:layout_marginBottom="@dimen/_15sdp"
+    android:layout_marginRight="@dimen/_5sdp"
+    android:layout_marginLeft="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="@dimen/_8sdp"
     app:cardElevation="@dimen/_3sdp">
@@ -25,7 +24,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_250sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:src="@mipmap/ic_launcher"
                 android:id="@+id/gambar"
                 android:scaleType="centerCrop"/>
@@ -66,11 +65,11 @@
                     android:orientation="vertical">
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_15sdp"
                         android:text="name"
                         android:textColor="#ffffff"
                         android:textStyle="bold"
-                        android:textSize="@dimen/_24ssp"
+                        android:textSize="@dimen/_12ssp"
                         android:layout_marginBottom="@dimen/_8sdp"
                         android:id="@+id/movieTitle"
                         android:layout_marginLeft="@dimen/_15sdp"
@@ -96,7 +95,7 @@
                             android:layout_below="@+id/movieTitle"
                             android:text="Tanggal:"
                             android:textColor="#ffffff"
-                            android:textSize="@dimen/_12ssp"
+                            android:textSize="@dimen/_8ssp"
                             android:layout_marginBottom="@dimen/_8sdp"
                             android:layout_marginLeft="@dimen/_15sdp"
                             android:layout_marginRight="@dimen/_5sdp"/>
@@ -105,9 +104,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/movieTitle"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/colorAccent"
                             android:text="Date"
-                            android:textSize="@dimen/_15ssp"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/_8ssp"
                             android:id="@+id/date"
                             android:layout_marginBottom="@dimen/_8sdp"
                             android:layout_marginRight="@dimen/_15sdp"/>

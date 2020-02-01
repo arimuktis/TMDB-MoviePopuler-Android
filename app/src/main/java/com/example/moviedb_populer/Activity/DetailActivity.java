@@ -60,7 +60,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.detail_activity);
 //        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 //        setSupportActionBar(myToolbar);
-        ActionBar ab = getSupportActionBar();
+//        ActionBar ab = getSupportActionBar();
 //        assert ab != null;
 //        ab.setDisplayHomeAsUpEnabled(true);
 
@@ -76,7 +76,7 @@ public class DetailActivity extends AppCompatActivity {
         tvOverview.setText(overview);
         tvLanguage.setText(language);
         tvGenres.setText(genres);
-        ab.setTitle(title);
+//        ab.setTitle(title);
         SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
