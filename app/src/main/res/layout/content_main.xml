@@ -38,6 +38,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:minHeight="@dimen/_150sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="vertical">
                         <androidx.recyclerview.widget.RecyclerView
@@ -45,18 +46,22 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             android:id="@+id/rc_view"/>
-                        <View
-                            android:layout_marginTop="@dimen/_10sdp"
-                            android:layout_width="match_parent"
-                            android:layout_height="0.5dp"
-                            android:background="#01d277"/>
+
 
                 </LinearLayout>
+
+                <View
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_height="0.5dp"
+                    android:background="#01d277"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_gravity="center"
                     android:text="Now Playing"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginRight="@dimen/_10sdp"
@@ -67,6 +72,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:minHeight="@dimen/_150sdp"
                     android:orientation="vertical">
                         <androidx.recyclerview.widget.RecyclerView
                             android:layout_width="match_parent"
@@ -94,22 +100,33 @@
 
 
         </LinearLayout>
-        <it.sephiroth.android.library.bottomnavigation.BottomNavigation
-            android:id="@+id/BottomNavigation"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_below="@+id/ll1"
-            android:paddingTop="@dimen/_10sdp"
-            android:layout_gravity="bottom"
-            app:bbn_entries="@menu/bottombar_menu_4items"
-            app:bbn_scrollEnabled="true"
-            app:bbn_badgeProvider="@string/bbn_badgeProvider"
-            app:layout_behavior="@string/bbn_phone_view_behavior"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_alignParentBottom="true"
+            android:id="@+id/bottombar"
+            android:orientation="vertical">
+                <it.sephiroth.android.library.bottomnavigation.BottomNavigation
+                    android:id="@+id/BottomNavigation"
+                    android:layout_width="match_parent"
+                    android:layout_below="@+id/ll1"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:layout_gravity="bottom"
+                    app:bbn_entries="@menu/bottombar_menu_4items"
+                    app:bbn_scrollEnabled="false"
+                    app:bbn_badgeProvider="@string/bbn_badgeProvider"
+                    app:layout_behavior="@string/bbn_phone_view_behavior"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+
+        </LinearLayout>
+
+
 
 
 </RelativeLayout>
