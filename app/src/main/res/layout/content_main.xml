@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#1f1f1f"
+    android:background="@color/grey"
     android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,113 +16,39 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:background="@drawable/logoss"
                     android:layout_gravity="center"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Movies"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textSize="@dimen/_20ssp"
-                    android:textStyle="bold"
-                    android:textColor="#ffffff"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="Popular"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textSize="@dimen/_12ssp"
-                    android:textColor="@color/colorAccent"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/_150sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="vertical">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:id="@+id/rc_view"/>
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_height="0.5dp"
-                    android:background="#01d277"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_gravity="center"
-                    android:text="Now Playing"
-                    android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:textSize="@dimen/_12ssp"
-                    android:textColor="@color/colorAccent"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:minHeight="@dimen/_150sdp"
-                    android:orientation="vertical">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:id="@+id/rc_view2"/>
-
-                </LinearLayout>
-
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="bottom"-->
-<!--                    android:orientation="horizontal">-->
-<!--                        <FrameLayout-->
-<!--                            android:layout_width="@dimen/_60sdp"-->
-<!--                            android:layout_height="@dimen/_60sdp"-->
-<!--                            android:background="#141414"/>-->
-<!--                        <FrameLayout-->
-<!--                            android:layout_width="@dimen/_60sdp"-->
-<!--                            android:layout_height="@dimen/_60sdp"-->
-<!--                            android:background="#242424"/>-->
-
-<!--                </LinearLayout>-->
-
 
         </LinearLayout>
+        <FrameLayout
+            android:layout_below="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container"
+            android:layout_above="@id/bottombar"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </FrameLayout>
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:id="@+id/bottombar"
+            android:background="@color/dark"
             android:orientation="vertical">
-                <it.sephiroth.android.library.bottomnavigation.BottomNavigation
+                <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/BottomNavigation"
                     android:layout_width="match_parent"
-                    android:layout_below="@+id/ll1"
-                    android:paddingTop="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     android:layout_gravity="bottom"
-                    app:bbn_entries="@menu/bottombar_menu_4items"
-                    app:bbn_scrollEnabled="false"
-                    app:bbn_badgeProvider="@string/bbn_badgeProvider"
-                    app:layout_behavior="@string/bbn_phone_view_behavior"
-                    android:layout_centerInParent="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    />
+                    app:itemBackground="@color/dark"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:itemTextColor="@animator/bottom_nav_color"
+                    app:itemIconTint="@animator/bottom_nav_color"
+                    app:menu="@menu/bottombar_menu_4items"/>
 
         </LinearLayout>
 

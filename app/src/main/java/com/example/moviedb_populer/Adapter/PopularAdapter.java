@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 
 import static com.example.moviedb_populer.BuildConfig.URL_BACKBG;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
+public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.MovieViewHolder> {
 
     private List<MovieModel> movies;
     private int rowLayout;
@@ -45,7 +45,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         }
     }
 
-    public MoviesAdapter(List<MovieModel> movies, int rowLayout, Context context) {
+    public PopularAdapter(List<MovieModel> movies, int rowLayout, Context context) {
         this.movies = movies;
         this.rowLayout = rowLayout;
         this.context = context;
@@ -54,7 +54,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 //        View view = LayoutInflater.from(context).inflate(R.layout.row, viewGroup,false);
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_popular, viewGroup, false);
         return new MovieViewHolder(view);
     }
 

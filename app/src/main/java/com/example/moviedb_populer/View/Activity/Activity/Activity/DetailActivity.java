@@ -1,4 +1,4 @@
-package com.example.moviedb_populer.Activity;
+package com.example.moviedb_populer.View.Activity.Activity.Activity;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
@@ -53,6 +53,13 @@ public class DetailActivity extends AppCompatActivity {
 //    private FavoriteHelper favoriteHelper;
 //    private boolean isFavorite = false;
 //    private int favorite;
+
+
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

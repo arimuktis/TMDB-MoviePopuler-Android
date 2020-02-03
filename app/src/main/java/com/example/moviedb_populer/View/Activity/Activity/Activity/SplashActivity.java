@@ -1,4 +1,4 @@
-package com.example.moviedb_populer.Activity;
+package com.example.moviedb_populer.View.Activity.Activity.Activity;
 
 
 import android.content.Intent;

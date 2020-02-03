@@ -1,163 +1,86 @@
-package com.example.moviedb_populer.Activity;
+package com.example.moviedb_populer.View.Activity.Activity.Fragment;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviedb_populer.Adapter.MoviesAdapter;
 import com.example.moviedb_populer.BuildConfig;
 import com.example.moviedb_populer.Interface.ApiBuilder;
 import com.example.moviedb_populer.Interface.ApiService;
-import com.example.moviedb_populer.Interface.OurRetrofit;
-import com.example.moviedb_populer.Interface.tMBDRetrofit;
 import com.example.moviedb_populer.Model.MovieModel;
 import com.example.moviedb_populer.Model.MovieResponse;
-import com.example.moviedb_populer.Model.MovieResults;
 import com.example.moviedb_populer.R;
-import com.example.moviedb_populer.Model.OurDataSet;
-import com.example.moviedb_populer.Service.TimerService;
+import com.example.moviedb_populer.View.Activity.Activity.Activity.DetailActivity;
 import com.example.moviedb_populer.values.Values;
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.widget.Toast.makeText;
+public class HomeFragment extends Fragment {
 
-public class MainActivity extends AppCompatActivity {
+    private RecyclerView recyclerView,recyclerView2;
 
-    private final int SECONDS = 1000;
-    private int counter=0;
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.main_fragment, container, false);
+        recyclerView = view.findViewById(R.id.rc_view);
+        recyclerView2 = view.findViewById(R.id.rc_view2);
+
         loadMovie();
 
-
-        final Handler handler = new Handler();
-        TimerTask timertask = new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(new Runnable() {
-                    public void run() {
-                        startService(new Intent(MainActivity.this, TimerService.class));
-                    }
-                });
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(timertask, 0, 10*SECONDS);
-
+        return view;
     }
 
-
-    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-        ApiService apiService = ApiBuilder.getClient(MainActivity.this).create(ApiService.class);
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String someValue = intent.getStringExtra("someName");
-            counter+=1;
-            Call<MovieResponse> call = apiService.getPopular(Values.CATEGORY[0],BuildConfig.API_KEY,Values.LANGUAGE,counter);
-            call.enqueue(new Callback<MovieResponse>() {
-                @Override
-                public void onResponse(Call<MovieResponse>call, Response<MovieResponse> response) {
-                    final List<MovieModel> movies = response.body().getResults();
-                    final RecyclerView recyclerView = findViewById(R.id.rc_view);
-                    recyclerView.setAdapter(new MoviesAdapter(movies, R.layout.content_main, getApplicationContext()));
-
-                    if (movies != null ){
-
-                        MovieModel firstMovie = movies.get(0);
-                        if(firstMovie != null) {
-                            Log.i("TAG","#Log Berhasil "+firstMovie.getTitle());
-
-                            Toast toast = Toast.makeText(getApplicationContext(), "Data telah berhasil diperbaharui", Toast.LENGTH_SHORT);
-                            toast.show();
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<MovieResponse>call, Throwable t) {
-                    // Log error here since request failed
-
-                    Log.i("TAG","#Log GAGAL "+t);
-
-                }
-            });
-        }
-    };
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.example.moviedb_populer.Service");
-        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.example.moviedb_populer.Service");
-        LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, intentFilter);
-    }
 
     private void loadMovie() {
-        ApiService apiService = ApiBuilder.getClient(this).create(ApiService.class);
-        final RecyclerView recyclerView = findViewById(R.id.rc_view);
-        final RecyclerView recyclerView2 = findViewById(R.id.rc_view2);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
-        recyclerView2.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL, false));
+        ApiService apiService = ApiBuilder.getClient(getContext()).create(ApiService.class);
+//        final RecyclerView recyclerView = findViewById(R.id.rc_view);
+//        final RecyclerView recyclerView2 = findViewById(R.id.rc_view2);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL, false));
         Call<MovieResponse> call = apiService.getPopular(Values.CATEGORY[0],BuildConfig.API_KEY,Values.LANGUAGE,Values.PAGE[0]);
         Call<MovieResponse> call2 = apiService.getPopular(Values.CATEGORY[1],BuildConfig.API_KEY,Values.LANGUAGE,Values.PAGE[0]);
         call.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(Call<MovieResponse>call, Response<MovieResponse> response) {
                 final List<MovieModel> movies = response.body().getResults();
-                recyclerView.setAdapter(new MoviesAdapter(movies, R.layout.content_main, getApplicationContext()));
+                recyclerView.setAdapter(new MoviesAdapter(movies, R.layout.content_main, getContext()));
                 recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-                    GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+                    GestureDetector gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
                         public boolean onSingleTapUp(MotionEvent e){
                             return true;
                         }
@@ -168,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         View child = rv.findChildViewUnder(e.getX(), e.getY());
                         if (child != null && gestureDetector.onTouchEvent(e)){
                             int position = rv.getChildAdapterPosition(child);
-                            Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+                            Intent i = new Intent(getContext(), DetailActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             i.putExtra(DetailActivity.EXTRA_TITLE, movies.get(position).getTitle());
                             i.putExtra(DetailActivity.EXTRA_OVERVIEW, movies.get(position).getOverview());
@@ -182,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                                 ex.printStackTrace();
                             }
 
-                            getApplicationContext().startActivity(i);
+                            getContext().startActivity(i);
                         }
                         return false;
                     }
@@ -218,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<MovieResponse>call, Response<MovieResponse> response) {
                 final List<MovieModel> movies = response.body().getResults();
-                recyclerView2.setAdapter(new MoviesAdapter(movies, R.layout.content_main, getApplicationContext()));
+                recyclerView2.setAdapter(new MoviesAdapter(movies, R.layout.content_main, getContext()));
                 recyclerView2.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-                    GestureDetector gestureDetector = new GestureDetector(getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
+                    GestureDetector gestureDetector = new GestureDetector(getContext(), new GestureDetector.SimpleOnGestureListener() {
                         public boolean onSingleTapUp(MotionEvent e){
                             return true;
                         }
@@ -231,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                         View child = rv.findChildViewUnder(e.getX(), e.getY());
                         if (child != null && gestureDetector.onTouchEvent(e)){
                             int position = rv.getChildAdapterPosition(child);
-                            Intent i = new Intent(getApplicationContext(), DetailActivity.class);
+                            Intent i = new Intent(getContext(), DetailActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             i.putExtra(DetailActivity.EXTRA_TITLE, movies.get(position).getTitle());
                             i.putExtra(DetailActivity.EXTRA_OVERVIEW, movies.get(position).getOverview());
@@ -245,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                                 ex.printStackTrace();
                             }
 
-                            getApplicationContext().startActivity(i);
+                            getContext().startActivity(i);
                         }
                         return false;
                     }
